@@ -1,13 +1,16 @@
+import types from "../actions/types"
+
 
 const DEFAULT_STATE = {
+  date: new Date().toLocaleDateString(),
   time: new Date().toLocaleTimeString()
 }
 
 function clockReducer(state = DEFAULT_STATE, action) {
+  console.log("clock_reducer Action: ", action)
   switch(action.type) {
-    case "TICK":
-        return { time: new Date().toLocaleTimeString };
-        break
+    case types.TICK :
+        return { ...state, time: action.payload };
     default:
         return state;
   }
